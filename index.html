@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>IronPulse – Gym Session Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ SPLASH SCREEN -->
+  <div id="splash-screen">
+    <div class="splash-logo">
+      <span class="splash-icon">⚡</span>
+      <h1>IRONPULSE</h1>
+      <p>ELITE GYM BOOKING</p>
+    </div>
+    <div class="splash-bar"><div class="splash-fill"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ AUTH PAGE -->
+  <div id="auth-page" class="page hidden">
+
+    <!-- Floating particles -->
+    <div class="particles">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="auth-header">
+      <div class="logo-mark">⚡</div>
+      <h1 class="logo-text">IRONPULSE</h1>
+      <p class="logo-sub">ELITE GYM BOOKING</p>
+    </div>
+
+    <!-- TAB SWITCHER -->
+    <div class="auth-tabs">
+      <button class="tab-btn active" data-tab="login">Login</button>
+      <button class="tab-btn" data-tab="register">Register</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-tab" class="auth-form active">
+      <div class="input-group">
+        <span class="input-icon">👤</span>
+        <input type="text" id="login-username" placeholder="Username" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="login-password" placeholder="Password" />
+      </div>
+      <button class="btn-primary" id="login-btn">LOGIN →</button>
+      <button class="btn-ghost" id="forgot-btn">Forgot Password?</button>
+      <div class="divider"><span>OR</span></div>
+      <button class="btn-outline" id="goto-admin-btn">🔧 Admin Portal</button>
+      <p id="login-error" class="form-error hidden"></p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="register-tab" class="auth-form hidden">
+      <div class="input-group">
+        <span class="input-icon">👤</span>
+        <input type="text" id="reg-username" placeholder="Choose Username" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="reg-password" placeholder="Create Password" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">✅</span>
+        <input type="password" id="reg-confirm" placeholder="Confirm Password" />
+      </div>
+      <button class="btn-primary" id="register-btn">CREATE ACCOUNT →</button>
+      <p id="register-error" class="form-error hidden"></p>
+      <p id="register-success" class="form-success hidden"></p>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════ ADMIN LOGIN PAGE -->
+  <div id="admin-login-page" class="page hidden">
+    <div class="page-header">
+      <button class="back-btn" id="admin-back-btn">← Back</button>
+      <h2>Admin Portal</h2>
+    </div>
+    <div class="admin-login-wrap">
+      <div class="admin-badge">🔧</div>
+      <h3>Admin Access</h3>
+      <p class="muted-text">For authorized personnel only</p>
+      <div class="input-group">
+        <span class="input-icon">👤</span>
+        <input type="text" id="admin-username" placeholder="Admin Username" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="admin-password" placeholder="Admin Password" />
+      </div>
+      <button class="btn-primary" id="admin-login-btn">ACCESS DASHBOARD →</button>
+      <p id="admin-error" class="form-error hidden"></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ USER DASHBOARD -->
+  <div id="user-dashboard" class="page hidden">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-logo">⚡ IRONPULSE</div>
+      <div class="nav-right">
+        <span id="nav-username" class="nav-user"></span>
+        <button class="nav-logout" id="logout-btn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <p class="hero-sub">WELCOME BACK,</p>
+        <h2 class="hero-name" id="hero-username"></h2>
+        <p class="hero-motto">💥 Push Beyond Limits</p>
+      </div>
+      <div class="hero-icon">🏆</div>
+    </div>
+
+    <!-- TABS -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" data-section="sessions">Sessions</button>
+      <button class="dash-tab" data-section="history">My Bookings</button>
+    </div>
+
+    <!-- SESSIONS SECTION -->
+    <div id="sessions-section" class="dash-section">
+      <h3 class="section-title">Available Sessions</h3>
+      <div id="sessions-container" class="sessions-grid"></div>
+    </div>
+
+    <!-- HISTORY SECTION -->
+    <div id="history-section" class="dash-section hidden">
+      <h3 class="section-title">Booking History</h3>
+      <div id="history-container" class="history-list"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════ ADMIN DASHBOARD -->
+  <div id="admin-dashboard" class="page hidden">
+
+    <!-- NAVBAR -->
+    <nav class="navbar admin-nav">
+      <div class="nav-logo">🔧 ADMIN</div>
+      <button class="nav-logout" id="admin-logout-btn">Logout</button>
+    </nav>
+
+    <!-- STATS ROW -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-num" id="stat-sessions">0</span>
+        <span class="stat-label">Sessions</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="stat-bookings">0</span>
+        <span class="stat-label">Bookings</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="stat-users">0</span>
+        <span class="stat-label">Users</span>
+      </div>
+    </div>
+
+    <!-- ADD SESSION FORM -->
+    <div class="admin-card">
+      <h3 class="admin-section-title">➕ Create New Session</h3>
+      <div class="input-group">
+        <span class="input-icon">🏷️</span>
+        <input type="text" id="new-session-name" placeholder="Session Name (e.g. 🏃 Morning Run)" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">👨‍🏫</span>
+        <input type="text" id="new-trainer-name" placeholder="Trainer Name" />
+      </div>
+      <div class="input-group">
+        <span class="input-icon">⏰</span>
+        <input type="text" id="new-session-time" placeholder="Time (e.g. 7:00 AM – 8:00 AM)" />
+      </div>
+      <button class="btn-primary" id="add-session-btn">ADD SESSION →</button>
+      <p id="add-session-msg" class="form-success hidden"></p>
+    </div>
+
+    <!-- ALL SESSIONS -->
+    <div class="admin-card">
+      <h3 class="admin-section-title">📋 All Sessions</h3>
+      <div id="admin-sessions-list" class="admin-sessions"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════ BOOKING POPUP -->
+  <div id="booking-overlay" class="overlay hidden">
+    <div class="booking-popup">
+      <div class="popup-confetti">🎊</div>
+      <h2 class="popup-title">Session Booked!</h2>
+      <div class="popup-emoji">🎉</div>
+      <div class="popup-session-info">
+        <p class="popup-session-name" id="popup-session-name"></p>
+        <p class="popup-session-time" id="popup-session-time"></p>
+        <p class="popup-trainer" id="popup-trainer"></p>
+      </div>
+      <div class="popup-motivation">
+        <span>🔥</span> Get Ready For Your Workout! <span>🔥</span>
+      </div>
+      <button class="btn-primary popup-close" id="popup-close-btn">AWESOME! LET'S GO 💪</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ FORGOT PASSWORD POPUP -->
+  <div id="forgot-overlay" class="overlay hidden">
+    <div class="forgot-popup">
+      <h3>🔑 Password Recovery</h3>
+      <p class="muted-text">Enter your username to retrieve your password.</p>
+      <div class="input-group">
+        <span class="input-icon">👤</span>
+        <input type="text" id="forgot-username" placeholder="Your Username" autocomplete="off" />
+      </div>
+      <p id="forgot-result" class="form-success hidden"></p>
+      <p id="forgot-error" class="form-error hidden"></p>
+      <div class="popup-actions">
+        <button class="btn-primary" id="forgot-submit-btn">FIND PASSWORD</button>
+        <button class="btn-ghost" id="forgot-close-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
